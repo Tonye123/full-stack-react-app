@@ -1,12 +1,13 @@
-import React, { useState,useEffect, useCallback } from 'react'
+import React, { useState,useEffect, useCallback, useContext } from 'react'
 import { StyledGame, StyledScore, StyledTimer, StyledCharacter } from '../styled/game'
 import { StyledStrong } from '../styled/random'
 import { useHistory } from 'react-router-dom';
+import { ScoreContext } from '../contexts/ScoreContext';
 
 export default function Game() {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    const [score, setScore] = useState(0)
-    const MAX_SECONDS = 90;
+    const [score, setScore] = useContext(ScoreContext);
+    const MAX_SECONDS = 5;
     const [currentCharacter, setCurrentCharacter] = useState('');
     const [ms,setMs] = useState(999)
     const [seconds, setSeconds] = useState(MAX_SECONDS)
@@ -15,6 +16,7 @@ export default function Game() {
 
     useEffect(() => {
         setRandomCharacter();
+        setScore(0)
         const currentTime = new Date();
         const interval = setInterval(()=> updateTime(currentTime),1)
         return () => {
