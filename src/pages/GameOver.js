@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ScoreContext } from '../contexts/ScoreContext'
 import { StyledLink } from '../styled/navBar'
 import { StyledCharacter } from '../styled/game';
+import { StyledTitle } from '../styled/random';
 
 
 export default function ({history}) {
@@ -24,7 +25,7 @@ export default function ({history}) {
                 if(data.id){
                     setScoreMessage('Congrats! you got a High Score!!!!!')
                 }else {
-                    setScoreMessage('OOPs no high score this time, Try again')
+                    setScoreMessage('Sorry no high score this time, You can Try Again')
                 }
 
                
@@ -38,10 +39,17 @@ export default function ({history}) {
     }, [])
     return (
         <div>
-            <StyledCharacter>{score}</StyledCharacter>
-            <p>{scoreMessage}</p>
-            <StyledLink to='/'>Go Home</StyledLink>
-            <StyledLink to='/game'>PlayAgain?</StyledLink>
+            <StyledTitle>Game Over</StyledTitle>
+             <h2>{scoreMessage}</h2>
+            <StyledCharacter>{score}</StyledCharacter> 
+            <div>
+                <StyledLink to='/'>Go Home</StyledLink>
+            </div>
+            <div>
+                <StyledLink to='/game'>PlayAgain?</StyledLink>
+            </div>
+            
+           
         </div>
     )
 }

@@ -19,7 +19,7 @@ exports.handler = async (event, context, callback) => {
         fields: record.fields,
     }))
    
-
+console.log(formattedRecords)
     return {
         statusCode: 200,
         body: JSON.stringify(
