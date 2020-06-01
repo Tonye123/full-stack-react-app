@@ -7,10 +7,16 @@ import Game from './pages/Game';
 import GameOver from './pages/GameOver'
 import { Container } from './styled/container'
 import { Main } from './styled/main';
-import Global from './styled/global'
+import Global from './styled/global';
+import { useAuth0 } from './auth';
 
 
 function App() {
+  const { loading } = useAuth0();
+
+  if(loading) {
+    return <p>Loading....</p>
+  }
   return (
     <Router>
       <Global />
