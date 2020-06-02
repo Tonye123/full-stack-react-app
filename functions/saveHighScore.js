@@ -1,6 +1,6 @@
 require('dotenv').config();
 const Airtable = require('airtable');
-const { getAccessTokenFromHeaders } = require('./utils/auth')
+const { getAccessTokenFromHeaders,validateAccessToken } = require('./utils/auth')
 
 Airtable.configure({
     apiKey: process.env.AIRTABLE_API_KEY
@@ -11,10 +11,12 @@ const table = base.table(process.env.AIRTABLE_TABLE)
 
 exports.handler = async (event, context, callback) => {
     const token = getAccessTokenFromHeaders(event.headers);
-    if(!token){
+    const user = await validateAccessToken(token);
+   
+    if(!user){
         return {
             statusCode: 401,
-            body: JSON.stringify({ err: "User is not logged in"})
+            body: JSON.stringify({ err: "Unauthorized"})
         }
     }
     
@@ -24,7 +26,8 @@ exports.handler = async (event, context, callback) => {
             body: JSON.stringify({err: 'This method is not allowed!'})
         }
     }
-    const {score,name} = JSON.parse(event.body);
+    const {score} = JSON.parse(event.body);
+    const name = user['https://learnbuildtype/username'];
 
     if(typeof score === 'undefined' || !name) {
         return {
