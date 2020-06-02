@@ -1,5 +1,6 @@
 require('dotenv').config();
-const Airtable = require('airtable')
+const Airtable = require('airtable');
+const { getAccessTokenFromHeaders } = require('./utils/auth')
 
 Airtable.configure({
     apiKey: process.env.AIRTABLE_API_KEY
@@ -9,7 +10,14 @@ const table = base.table(process.env.AIRTABLE_TABLE)
 
 
 exports.handler = async (event, context, callback) => {
-    console.log(event)
+    const token = getAccessTokenFromHeaders(event.headers);
+    if(!token){
+        return {
+            statusCode: 401,
+            body: JSON.stringify({ err: "User is not logged in"})
+        }
+    }
+    
     if(event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
