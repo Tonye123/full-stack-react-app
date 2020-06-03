@@ -14,13 +14,11 @@ import { useAuth0 } from './auth';
 function App() {
   const { loading } = useAuth0();
 
-  if(loading) {
-    return <p>Loading....</p>
-  }
   return (
     <Router>
       <Global />
       <Main>
+        {loading ? (<p>Loading....</p>) : (
         <Container>
           <NavBar />
           <Switch>
@@ -31,6 +29,7 @@ function App() {
               <Route path="/" component={Home} />
           </Switch>
         </Container>
+        )}
       </Main>
     </Router>
   );

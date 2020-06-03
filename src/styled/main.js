@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Main = styled.div`
         margin: 0;
-        background: #f9f9f9;
+        background: var(--main-bg-color);
         min-height: 100vh;
 
 `
