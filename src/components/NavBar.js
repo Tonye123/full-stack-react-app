@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 import { StyledNavbar, StyledNavBrand, StyledNavItems, StyledLink, Accent } from '../styled/navBar'
 import { useAuth0 } from "../auth";
 
-export default function NavBar() {
+
+export default function NavBar({togTheme}) {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
     return (
         <StyledNavbar>
@@ -25,6 +26,10 @@ export default function NavBar() {
                     <li><button onClick={logout}>Logout</button></li>
 
                 )}
+                <li><button onClick={togTheme}>
+                    Toggle Theme
+                </button></li>
+
             </StyledNavItems>
         </StyledNavbar>
     )
