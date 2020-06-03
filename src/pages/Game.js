@@ -7,7 +7,7 @@ import { ScoreContext } from '../contexts/ScoreContext';
 export default function Game() {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     const [score, setScore] = useContext(ScoreContext);
-    const MAX_SECONDS = 10;
+    const MAX_SECONDS = 15;
     const [currentCharacter, setCurrentCharacter] = useState('');
     const [ms,setMs] = useState(999)
     const [seconds, setSeconds] = useState(MAX_SECONDS)
