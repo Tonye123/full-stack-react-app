@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { StyledNavbar, StyledNavBrand, StyledNavItems, StyledLink, Accent } from '../styled/navBar'
+import { StyledNavbar, 
+        StyledNavBrand, 
+        StyledNavItems, 
+        StyledLink, Accent, 
+        StyledButtonLink } 
+        from '../styled/navBar'
 import { useAuth0 } from "../auth";
+import {StyledButton} from '../styled/Buttons'
 
 
 export default function NavBar({togTheme}) {
@@ -19,16 +25,16 @@ export default function NavBar({togTheme}) {
                 <li><StyledLink to="/">Home</StyledLink></li>
                 <li><StyledLink to = "/highScores">High Scores</StyledLink></li>
                 {!isAuthenticated && (
-                    <li><button onClick={loginWithRedirect}>Login</button></li>
+                    <li><StyledButtonLink onClick={loginWithRedirect}>Login</StyledButtonLink></li>
 
                 )}
                   {isAuthenticated && (
-                    <li><button onClick={logout}>Logout</button></li>
+                    <li><StyledButtonLink onClick={logout}>Logout</StyledButtonLink></li>
 
                 )}
-                <li><button onClick={togTheme}>
+                <li><StyledButton onClick={togTheme}>
                     Toggle Theme
-                </button></li>
+                </StyledButton></li>
 
             </StyledNavItems>
         </StyledNavbar>

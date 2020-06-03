@@ -12,6 +12,7 @@ import { useAuth0 } from './auth';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme} from './styled/Themes';
 import useTheme from './hooks/useTheme'
+import Loader from './styled/Loader';
 
 //const theme = "dark";
 
@@ -26,7 +27,7 @@ function App() {
       <ThemeProvider theme={currentTheme}>
       <Global />
       <Main>
-        {loading ? (<p>Loading....</p>) : (
+        {loading ? (<Loader>Loading....</Loader>) : (
         <Container>
           <NavBar togTheme = {toggleTheme} />
           <Switch>
